@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вход — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/auth.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html">Каталог</a>
+        <a href="community.html">Сообщество</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn">🛒</a>
+        <a href="login.html" class="btn btn-primary">Войти</a>
+        <a href="register.html" class="btn btn-ghost">Регистрация</a>
+        <button class="burger" id="burger" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="container auth-layout">
+      <section class="auth-showcase">
+        <span class="section-kicker">Добро пожаловать обратно</span>
+        <h1>Войди и продолжай прокачивать свой магазинный опыт</h1>
+        <p>
+          Сохраняй избранное, оставляй отзывы, управляй профилем и оформляй заказы
+          быстрее и удобнее.
+        </p>
+
+        <div class="auth-features">
+          <div class="auth-feature-card">
+            <div class="auth-feature-icon">⚡</div>
+            <div>
+              <strong>Быстрый вход</strong>
+              <span>Моментальный доступ к аккаунту</span>
+            </div>
+          </div>
+
+          <div class="auth-feature-card">
+            <div class="auth-feature-icon">🛍️</div>
+            <div>
+              <strong>Заказы и корзина</strong>
+              <span>Всё хранится в одном месте</span>
+            </div>
+          </div>
+
+          <div class="auth-feature-card">
+            <div class="auth-feature-icon">🔥</div>
+            <div>
+              <strong>Премиум интерфейс</strong>
+              <span>Удобно и красиво даже с телефона</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="auth-card-wrap">
+        <div class="auth-card">
+          <div class="auth-card-top">
+            <span class="auth-chip">Авторизация</span>
+            <h2>Вход в аккаунт</h2>
+            <p>Введи email и пароль, чтобы попасть в свой профиль.</p>
+          </div>
+
+          <form id="login-form" class="auth-form">
+            <div class="auth-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="auth-field">
+              <label for="password">Пароль</label>
+              <div class="password-wrap">
+                <input type="password" id="password" placeholder="Введите пароль" required>
+                <button type="button" class="password-toggle" id="toggle-password">👁</button>
+              </div>
+            </div>
+
+            <div class="auth-row">
+              <label class="remember-me">
+                <input type="checkbox" id="remember-me">
+                <span>Запомнить меня</span>
+              </label>
+
+              <a href="#" class="auth-link">Забыл пароль?</a>
+            </div>
+
+            <button type="submit" class="auth-submit-btn" id="login-btn">
+              Войти
+            </button>
+
+            <div id="login-msg" class="auth-message"></div>
+          </form>
+
+          <div class="auth-divider">
+            <span>или</span>
+          </div>
+
+          <div class="auth-bottom">
+            <p>Ещё нет аккаунта?</p>
+            <a href="register.html" class="switch-link">Создать аккаунт</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/pages/login.js"></script>
+  <div id="toast-container"></div>
+<script src="js/toast.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/cart.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html">Каталог</a>
+        <a href="community.html">Сообщество</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn cart-link">
+          🛒 <span id="cart-count">0</span>
+        </a>
+
+        <div id="guest-actions">
+          <a href="login.html" class="btn btn-ghost">Войти</a>
+          <a href="register.html" class="btn btn-primary">Регистрация</a>
+        </div>
+
+        <div id="user-actions" class="hidden">
+          <div class="header-user-menu" id="header-user-menu">
+            <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+              <img id="header-avatar-image" class="header-avatar-image hidden" alt="avatar">
+              <span class="header-avatar" id="header-avatar">U</span>
+            </button>
+
+            <div class="header-dropdown" id="header-dropdown">
+              <a href="profile.html" class="header-dropdown-item">Профиль</a>
+              <a href="favorites.html" class="header-dropdown-item">Закладки</a>
+              <a href="admin.html" class="header-dropdown-item hidden" id="admin-dropdown-link">Админка</a>
+              <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="burger" id="burger" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="cart-page">
+    <div class="container">
+      <section class="cart-hero">
+        <span class="section-kicker">Корзина SportShop</span>
+        <h1>Твои товары</h1>
+        <p>Проверь выбранные позиции, количество и итоговую сумму перед оформлением заказа.</p>
+      </section>
+
+      <section class="cart-layout">
+        <div class="cart-main">
+          <div id="cart-list" class="cart-list"></div>
+        </div>
+
+        <aside class="cart-sidebar">
+  <div class="cart-summary-card">
+    <div class="checkout-panel-head">
+      <span class="checkout-kicker">Оформление SportShop</span>
+      <h2>Оформление заказа</h2>
+      <p>Заполни данные, чтобы быстро подтвердить покупку.</p>
+    </div>
+
+    <form id="checkout-form" class="checkout-form checkout-form-sidebar">
+      <div class="checkout-field">
+        <label for="checkout-name">Имя</label>
+        <input
+          type="text"
+          id="checkout-name"
+          required
+          placeholder="Например: Нуржан"
+        >
+      </div>
+
+      <div class="checkout-field">
+        <label for="checkout-phone">Телефон</label>
+        <input
+          type="text"
+          id="checkout-phone"
+          required
+          placeholder="+7 777 123 45 67"
+        >
+      </div>
+
+      <div class="checkout-field">
+        <label for="checkout-city">Город</label>
+        <input
+          type="text"
+          id="checkout-city"
+          placeholder="Например: Астана"
+        >
+      </div>
+
+      <div class="checkout-field">
+        <label for="checkout-address">Адрес</label>
+        <input
+          type="text"
+          id="checkout-address"
+          placeholder="Улица, дом, квартира"
+        >
+      </div>
+
+      <div class="checkout-field">
+  <label>Способ доставки</label>
+  <input type="hidden" id="checkout-delivery" value="courier">
+
+  <div class="checkout-choice-group" id="checkout-delivery-group">
+    <button type="button" class="checkout-choice active" data-value="courier">Курьер</button>
+    <button type="button" class="checkout-choice" data-value="pickup">Самовывоз</button>
+    <button type="button" class="checkout-choice" data-value="post">Почта / Казахстан</button>
+  </div>
+</div>
+
+<div class="checkout-field">
+  <label>Способ оплаты</label>
+  <input type="hidden" id="checkout-payment" value="cash">
+
+  <div class="checkout-choice-group" id="checkout-payment-group">
+    <button type="button" class="checkout-choice active" data-value="cash">Наличными</button>
+    <button type="button" class="checkout-choice" data-value="card">Карта / перевод</button>
+    <button type="button" class="checkout-choice" data-value="kaspi">Kaspi</button>
+  </div>
+</div>
+
+      <div class="checkout-field">
+        <label for="checkout-comment">Комментарий к заказу</label>
+        <textarea
+          id="checkout-comment"
+          rows="4"
+          placeholder="Например: позвонить перед доставкой"
+        ></textarea>
+      </div>
+
+      <div class="cart-summary-row">
+        <span>Товары</span>
+        <span id="cart-items-count">0</span>
+      </div>
+
+      <div class="cart-summary-row total">
+        <span>Итого</span>
+        <span id="cart-total">0 ₸</span>
+      </div>
+
+      <button type="submit" class="btn btn-primary cart-checkout-btn">
+        Подтвердить заказ
+      </button>
+
+      <a href="shop.html" class="btn btn-ghost cart-back-btn">Вернуться в каталог</a>
+    </form>
+  </div>
+</aside>
+      </section>
+    </div>
+
+
+
+</main>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/cart.js"></script>
+  <div id="toast-container"></div>
+<script src="js/toast.js"></script>
+</body>
+</html>

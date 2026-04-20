@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Каталог — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/shop.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html" class="active">Каталог</a>
+        <a href="community.html">Сообщество</a>
+      </nav>
+
+      <div class="header-actions">
+
+  <div id="guest-actions">
+    <a href="login.html" class="btn btn-ghost">Войти</a>
+    <a href="register.html" class="btn btn-primary">Регистрация</a>
+  </div>
+
+  <div id="user-actions" class="hidden">
+  <div class="header-user-menu" id="header-user-menu">
+    <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+  <img id="header-avatar-image" class="header-avatar-image hidden" alt="avatar">
+  <span class="header-avatar" id="header-avatar">U</span>
+</button>
+    <div class="header-dropdown" id="header-dropdown">
+  <a href="profile.html" class="header-dropdown-item">Профиль</a>
+  <a href="favorites.html" class="header-dropdown-item">Закладки</a>
+  <a href="admin.html" class="header-dropdown-item hidden" id="admin-dropdown-link">Админка</a>
+  <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+</div>
+  </div>
+</div>
+
+<a href="cart.html" class="icon-btn cart-link">
+  🛒 <span id="cart-count">0</span>
+</a>
+
+  <button class="burger" id="burger" type="button">☰</button>
+</div>
+    </div>
+  </header>
+
+  <main class="catalog-page">
+    <section class="catalog-hero">
+      <div class="container">
+        <div class="catalog-hero-box">
+          <div>
+            <span class="section-kicker">Каталог SportShop</span>
+            <h1>Подбери добавки под свою цель</h1>
+            <p>
+              Протеин, креатин, предтрены, витамины и другие добавки
+              для силы, массы, восстановления и формы.
+            </p>
+          </div>
+
+          <div class="catalog-hero-badges">
+            <div class="mini-badge">Оригинальный товар</div>
+            <div class="mini-badge">Быстрая доставка</div>
+            <div class="mini-badge">Популярные бренды</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section">
+      <div class="container catalog-layout">
+        <aside class="catalog-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-head">
+              <h3>Фильтры</h3>
+              <button type="button" class="clear-btn" id="clear-filters">Сбросить</button>
+            </div>
+
+            <div class="filter-group">
+              <label for="search">Поиск</label>
+              <input type="text" id="search" placeholder="Например: whey, creatine...">
+            </div>
+
+            <div class="filter-group">
+              <label>Категории</label>
+              <div class="category-list" id="category-list">
+                <button type="button" class="filter-chip active" data-category="all">Все</button>
+                <button type="button" class="filter-chip" data-category="whey">Протеин</button>
+                <button type="button" class="filter-chip" data-category="creatine">Креатин</button>
+                <button type="button" class="filter-chip" data-category="preworkout">Предтрен</button>
+                <button type="button" class="filter-chip" data-category="vitamins">Витамины</button>
+                <button type="button" class="filter-chip" data-category="gainer">Гейнер</button>
+                <button type="button" class="filter-chip" data-category="fatburner">Жиросжигатель</button>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label for="sort">Сортировка</label>
+              <select id="sort">
+                <option value="default">По умолчанию</option>
+                <option value="price-asc">Сначала дешевле</option>
+                <option value="price-desc">Сначала дороже</option>
+                <option value="name-asc">По названию А-Я</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="min-price">Цена от</label>
+              <input type="number" id="min-price" placeholder="0">
+            </div>
+
+            <div class="filter-group">
+              <label for="max-price">Цена до</label>
+              <input type="number" id="max-price" placeholder="100000">
+            </div>
+          </div>
+        </aside>
+
+        <div class="catalog-content">
+          <div class="catalog-toolbar">
+            <div>
+              <p class="catalog-label">Каталог товаров</p>
+              <h2>Популярные позиции</h2>
+            </div>
+
+            <div class="catalog-meta">
+              <span id="products-found">Найдено: 0</span>
+            </div>
+          </div>
+
+          <div class="catalog-grid" id="products-grid">
+            <!-- карточки -->
+          </div>
+
+          <div class="empty-state hidden" id="empty-state">
+            <div class="empty-icon">🔍</div>
+            <h3>Товары не найдены</h3>
+            <p>Попробуй изменить поиск, категорию или диапазон цен.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<div class="ai-chat-fab" id="ai-chat-fab" title="Открыть AI чат">💬</div>
+
+<div class="ai-chat hidden" id="ai-chat">
+  <div class="ai-chat-header">
+    <div class="ai-chat-header-left">
+      <div class="ai-chat-avatar">🤖</div>
+      <div class="ai-chat-title">
+        <strong>SportShop AI</strong>
+        <span>Консультант магазина</span>
+      </div>
+    </div>
+
+    <button class="ai-chat-close" id="ai-chat-close" type="button">✕</button>
+  </div>
+
+  <div class="ai-chat-body">
+    <div class="ai-chat-messages" id="ai-chat-messages">
+      <div class="ai-msg ai-msg-bot">
+        Привет. Я помогу подобрать спортпит, объяснить разницу между товарами и ответить по заказу.
+      </div>
+    </div>
+
+    <div class="ai-chat-suggestions" id="ai-chat-suggestions">
+      <button class="ai-suggestion" type="button" data-text="Подбери мне креатин для новичка">Креатин для новичка</button>
+      <button class="ai-suggestion" type="button" data-text="Какой протеин лучше для набора массы?">Протеин для массы</button>
+      <button class="ai-suggestion" type="button" data-text="Чем отличается изолят от концентрата?">Изолят или концентрат</button>
+      <button class="ai-suggestion" type="button" data-text="Как принимать предтрен правильно?">Как пить предтрен</button>
+    </div>
+
+    <form class="ai-chat-form" id="ai-chat-form">
+      <input
+        id="ai-chat-input"
+        type="text"
+        placeholder="Например: какой товар лучше для силы?"
+        autocomplete="off"
+      />
+      <button type="submit">↑</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/ai-chat.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth-ui.js"></script>
+  <script src="js/pages/shop.js"></script>
+  <div id="toast-container"></div>
+<script src="js/toast.js"></script>
+</body>
+</html>

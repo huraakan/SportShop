@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сообщество — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/community.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html">Каталог</a>
+        <a href="community.html" class="active">Сообщество</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn cart-link">
+          🛒 <span id="cart-count">0</span>
+        </a>
+
+        <div id="guest-actions">
+          <a href="login.html" class="btn btn-ghost">Войти</a>
+          <a href="register.html" class="btn btn-primary">Регистрация</a>
+        </div>
+
+        <div id="user-actions" class="hidden">
+          <div class="header-user-menu" id="header-user-menu">
+            <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+              <img id="header-avatar-image" class="header-avatar-image hidden" alt="avatar">
+              <span class="header-avatar" id="header-avatar">U</span>
+            </button>
+
+            <div class="header-dropdown" id="header-dropdown">
+              <a href="profile.html" class="header-dropdown-item">Профиль</a>
+              <a href="favorites.html" class="header-dropdown-item">Закладки</a>
+              <a href="admin.html" class="header-dropdown-item hidden" id="admin-dropdown-link">Админка</a>
+              <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="burger" id="burger" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="community-page">
+    <div class="container">
+      <section class="community-hero">
+        <div class="community-hero-left">
+          <span class="section-kicker">Локальное сообщество SportShop</span>
+          <h1 id="community-title">Сообщество</h1>
+          <p id="community-subtitle">Общайся, делись прогрессом, задавай вопросы и обсуждай добавки с людьми из своей страны.</p>
+        </div>
+
+        <div class="community-hero-right">
+          <div class="community-country-card">
+            <span class="community-country-label">Твоя страна</span>
+            <strong id="community-country-name">Загрузка...</strong>
+            <span id="community-user-name">Пользователь</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="community-layout">
+        <aside class="community-sidebar">
+          <div class="community-panel">
+            <h3>Разделы</h3>
+
+            <div class="community-categories" id="community-categories">
+              <button class="community-category active" data-category="all" type="button">Все посты</button>
+              <button class="community-category" data-category="general" type="button">Общее</button>
+              <button class="community-category" data-category="questions" type="button">Вопросы</button>
+              <button class="community-category" data-category="reviews" type="button">Отзывы</button>
+              <button class="community-category" data-category="progress" type="button">Прогресс</button>
+              <button class="community-category" data-category="supplements" type="button">Добавки</button>
+              <button class="community-category" data-category="training" type="button">Тренировки</button>
+              <button class="community-category" data-category="beginners" type="button">Новички</button>
+            </div>
+          </div>
+
+          <div class="community-panel">
+            <h3>Правила</h3>
+            <ul class="community-rules">
+              <li>Без спама и рекламы</li>
+              <li>Уважай других участников</li>
+              <li>Пиши по теме</li>
+              <li>Не публикуй запрещённый контент</li>
+            </ul>
+          </div>
+        </aside>
+
+        <section class="community-feed">
+          <div class="community-panel create-post-panel">
+            <div class="create-post-head">
+              <h2>Создать пост</h2>
+              <span id="create-post-country-badge">...</span>
+            </div>
+
+            <form id="create-post-form" class="create-post-form">
+              <div class="create-post-row">
+                <div class="create-post-field">
+                  <label for="post-category">Категория</label>
+                  <select id="post-category" required>
+                    <option value="general">Общее</option>
+                    <option value="questions">Вопросы</option>
+                    <option value="reviews">Отзывы</option>
+                    <option value="progress">Прогресс</option>
+                    <option value="supplements">Добавки</option>
+                    <option value="training">Тренировки</option>
+                    <option value="beginners">Новички</option>
+                  </select>
+                </div>
+
+                <div class="create-post-field">
+                  <label for="post-image">Ссылка на фото</label>
+                  <input type="text" id="post-image" placeholder="https://...">
+                </div>
+              </div>
+
+              <div class="create-post-field">
+                <label for="post-content">Текст поста</label>
+                <textarea id="post-content" rows="5" placeholder="Напиши, что хочешь обсудить..." required></textarea>
+              </div>
+
+              <div class="create-post-actions">
+                <button type="submit" class="btn btn-primary">Опубликовать</button>
+              </div>
+
+              <div id="create-post-message" class="community-message"></div>
+            </form>
+          </div>
+
+          <div class="community-feed-toolbar">
+            <h2>Лента</h2>
+            <span id="posts-count">Постов: 0</span>
+          </div>
+
+          <div id="community-posts" class="community-posts"></div>
+        </section>
+
+        <aside class="community-rightbar">
+          <div class="community-panel">
+            <h3>Активность</h3>
+            <div class="community-stat-list">
+              <div class="community-stat-item">
+                <span>Постов</span>
+                <strong id="stat-posts">0</strong>
+              </div>
+              <div class="community-stat-item">
+                <span>Текущая страна</span>
+                <strong id="stat-country">...</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="community-panel">
+            <h3>Подсказка</h3>
+            <p class="community-tip">
+              Делись отзывами о товарах, прогрессом, вопросами по тренировкам и советами по питанию.
+            </p>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+<div class="ai-chat-fab" id="ai-chat-fab" title="Открыть AI чат">💬</div>
+
+<div class="ai-chat hidden" id="ai-chat">
+  <div class="ai-chat-header">
+    <div class="ai-chat-header-left">
+      <div class="ai-chat-avatar">🤖</div>
+      <div class="ai-chat-title">
+        <strong>SportShop AI</strong>
+        <span>Консультант магазина</span>
+      </div>
+    </div>
+
+    <button class="ai-chat-close" id="ai-chat-close" type="button">✕</button>
+  </div>
+
+  <div class="ai-chat-body">
+    <div class="ai-chat-messages" id="ai-chat-messages">
+      <div class="ai-msg ai-msg-bot">
+        Привет. Я помогу подобрать спортпит, объяснить разницу между товарами и ответить по заказу.
+      </div>
+    </div>
+
+    <div class="ai-chat-suggestions" id="ai-chat-suggestions">
+      <button class="ai-suggestion" type="button" data-text="Подбери мне креатин для новичка">Креатин для новичка</button>
+      <button class="ai-suggestion" type="button" data-text="Какой протеин лучше для набора массы?">Протеин для массы</button>
+      <button class="ai-suggestion" type="button" data-text="Чем отличается изолят от концентрата?">Изолят или концентрат</button>
+      <button class="ai-suggestion" type="button" data-text="Как принимать предтрен правильно?">Как пить предтрен</button>
+    </div>
+
+    <form class="ai-chat-form" id="ai-chat-form">
+      <input
+        id="ai-chat-input"
+        type="text"
+        placeholder="Например: какой товар лучше для силы?"
+        autocomplete="off"
+      />
+      <button type="submit">↑</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/ai-chat.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/pages/community.js"></script>
+  <div id="toast-container"></div>
+<script src="js/toast.js"></script>
+</body>
+</html>

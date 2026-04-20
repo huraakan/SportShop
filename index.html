@@ -1,0 +1,570 @@
+!<DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportShop — Премиальный спортпит</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .hero.hero-home-upgrade { padding-top: 42px; padding-bottom: 24px; }
+    .hero-grid.home-upgrade-grid { grid-template-columns: 1.1fr 0.9fr; align-items: stretch; gap: 22px; }
+    .hero-content h1.home-title { max-width: 720px; margin-bottom: 16px; }
+    .hero-content p.home-subtitle { max-width: 650px; margin-bottom: 24px; }
+    .hero-mini-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+
+    .hero-mini-card,
+    .hero-panel,
+    .goal-card,
+    .mini-product,
+    .trust-chip,
+    .review-card,
+    .home-banner,
+    .compare-card,
+    .home-news-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)), rgba(12, 12, 14, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.24);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-mini-card { border-radius: 22px; padding: 18px; }
+    .hero-mini-card span { display: block; font-size: 12px; color: var(--text-soft); margin-bottom: 8px; }
+    .hero-mini-card strong { display: block; font-size: 22px; line-height: 1; margin-bottom: 6px; }
+    .hero-mini-card p { color: var(--text-soft); font-size: 13px; line-height: 1.5; margin: 0; }
+
+    .hero-visual.hero-dashboard { min-height: 100%; display: flex; flex-direction: column; gap: 16px; }
+
+    .hero-panel { border-radius: 30px; padding: 22px; position: relative; overflow: hidden; }
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -80px -120px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,122,24,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-panel-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .hero-panel-label {
+      display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: #d8d8d8;
+    }
+    .hero-panel-value { font-size: 13px; color: #8fffc8; }
+    .hero-panel h3 {
+      font-size: clamp(26px, 4vw, 40px); line-height: 1.02; letter-spacing: -0.04em; margin-bottom: 10px;
+      font-family: "Syne", sans-serif; max-width: 520px;
+    }
+    .hero-panel p { color: var(--text-soft); line-height: 1.7; max-width: 500px; margin-bottom: 20px; }
+
+    .hero-panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hero-feature-box {
+      border-radius: 22px; padding: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-feature-box strong { display: block; font-size: 15px; margin-bottom: 6px; }
+    .hero-feature-box span { display: block; color: var(--text-soft); font-size: 13px; line-height: 1.5; }
+
+    .hero-side-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hero-side-card {
+      border-radius: 24px; padding: 20px;
+      background: radial-gradient(circle at top right, rgba(0,230,118,0.08), transparent 42%), linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)), rgba(10,10,12,0.92);
+      border: 1px solid rgba(255,255,255,0.08); min-height: 180px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .hero-side-card.orange {
+      background: radial-gradient(circle at top right, rgba(255,122,24,0.12), transparent 45%), linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)), rgba(10,10,12,0.92);
+    }
+    .hero-side-card .emoji { font-size: 26px; margin-bottom: 14px; }
+    .hero-side-card strong { display: block; font-size: 18px; margin-bottom: 8px; }
+    .hero-side-card p { margin: 0; color: var(--text-soft); font-size: 14px; line-height: 1.55; }
+
+    .section.section-compact { padding-top: 48px; padding-bottom: 48px; }
+
+    .goals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .goal-card { border-radius: 28px; padding: 24px; position: relative; overflow: hidden; min-height: 220px; transition: .25s ease; }
+    .goal-card:hover, .mini-product:hover, .review-card:hover, .compare-card:hover, .home-news-card:hover { transform: translateY(-4px); border-color: rgba(255,122,24,0.22); }
+
+    .goal-badge {
+      display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 16px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); font-size: 22px; margin-bottom: 18px;
+    }
+    .goal-card h3 { font-size: 22px; margin-bottom: 10px; }
+    .goal-card p { color: var(--text-soft); line-height: 1.65; margin-bottom: 18px; font-size: 14px; }
+    .goal-card span { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 14px; font-weight: 600; }
+
+    .mini-products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .mini-product { border-radius: 28px; padding: 22px; min-height: 270px; display: flex; flex-direction: column; justify-content: space-between; transition: .25s ease; }
+    .mini-product-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 18px; }
+    .mini-product-badge {
+      display: inline-flex; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: #d8d8d8;
+    }
+    .mini-product-rank { font-family: "Syne", sans-serif; font-size: 34px; line-height: 1; color: rgba(255,255,255,0.16); }
+    .mini-product h3 { font-size: 24px; margin-bottom: 10px; }
+    .mini-product p { color: var(--text-soft); line-height: 1.65; font-size: 14px; margin-bottom: 18px; }
+    .mini-product ul { list-style: none; display: grid; gap: 8px; margin-bottom: 18px; }
+    .mini-product li { color: #d7d7d7; font-size: 13px; position: relative; padding-left: 18px; }
+    .mini-product li::before {
+      content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--orange-soft));
+    }
+    .mini-product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .mini-product-price { font-size: 24px; font-weight: 800; }
+
+    .trust-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+    .trust-chip { border-radius: 22px; padding: 18px; display: flex; align-items: center; gap: 14px; }
+    .trust-icon {
+      width: 48px; height: 48px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); font-size: 22px; flex: 0 0 auto;
+    }
+    .trust-chip strong { display: block; font-size: 15px; margin-bottom: 4px; }
+    .trust-chip span { color: var(--text-soft); font-size: 13px; line-height: 1.45; }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .review-card { border-radius: 26px; padding: 24px; transition: .25s ease; }
+    .review-stars { color: #ffc861; letter-spacing: 2px; margin-bottom: 14px; font-size: 14px; }
+    .review-card p { color: #e9e9e9; line-height: 1.8; margin-bottom: 18px; font-size: 15px; }
+    .review-author { color: var(--text-soft); font-size: 13px; }
+
+    .home-banner {
+      border-radius: 34px; padding: 34px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 18px; align-items: stretch;
+      overflow: hidden; position: relative;
+    }
+    .home-banner::after {
+      content: ""; position: absolute; width: 320px; height: 320px; right: -80px; top: -80px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,230,118,0.10), transparent 70%); pointer-events: none;
+    }
+    .home-banner h2 {
+      font-family: "Syne", sans-serif; font-size: clamp(30px, 4vw, 48px); line-height: 1.04; letter-spacing: -0.04em;
+      margin: 10px 0 12px; max-width: 700px;
+    }
+    .home-banner p { color: var(--text-soft); line-height: 1.8; max-width: 600px; margin-bottom: 22px; }
+    .home-banner-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .compare-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; }
+    .compare-card, .home-news-card { border-radius: 28px; padding: 24px; transition: .25s ease; }
+    .compare-card h3, .home-news-card h3 { font-size: 24px; margin-bottom: 12px; }
+
+    .compare-list { display: grid; gap: 12px; margin-top: 18px; }
+    .compare-item {
+      display: grid; grid-template-columns: 120px 1fr; gap: 14px; padding: 14px; border-radius: 18px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+    }
+    .compare-item strong { font-size: 14px; color: #fff; }
+    .compare-item span { color: var(--text-soft); font-size: 14px; line-height: 1.6; }
+
+    .news-list { display: grid; gap: 12px; }
+    .news-row { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .news-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .news-row small { display: inline-block; margin-bottom: 8px; color: #8fffc8; font-size: 12px; }
+    .news-row strong { display: block; margin-bottom: 6px; font-size: 16px; }
+    .news-row p { color: var(--text-soft); line-height: 1.6; font-size: 14px; }
+
+    @media (max-width: 1100px) {
+      .hero-grid.home-upgrade-grid, .home-banner, .compare-grid { grid-template-columns: 1fr; }
+      .goals-grid, .trust-row, .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .mini-products-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-mini-row, .hero-panel-grid, .hero-side-grid, .goals-grid, .trust-row, .reviews-grid { grid-template-columns: 1fr; }
+      .hero.hero-home-upgrade { padding-top: 28px; }
+      .home-banner, .compare-card, .home-news-card, .review-card, .goal-card, .mini-product, .hero-panel, .hero-mini-card { padding: 20px; }
+      .compare-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="active">Главная</a>
+        <a href="shop.html">Каталог</a>
+        <a href="community.html">Сообщество</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn">🛒</a>
+
+        <div id="guest-actions">
+          <a href="login.html" class="btn btn-ghost">Войти</a>
+          <a href="register.html" class="btn btn-primary">Регистрация</a>
+        </div>
+
+        <div id="user-actions" class="hidden">
+          <div class="header-user-menu" id="header-user-menu">
+            <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+              <img id="header-avatar-image" class="header-avatar-image hidden" alt="avatar">
+              <span class="header-avatar" id="header-avatar">U</span>
+            </button>
+
+            <div class="header-dropdown" id="header-dropdown">
+              <a href="profile.html" class="header-dropdown-item">Профиль</a>
+              <a href="favorites.html" class="header-dropdown-item">Закладки</a>
+              <a href="admin.html" class="header-dropdown-item hidden" id="admin-dropdown-link">Админка</a>
+              <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="burger" id="burger" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero-home-upgrade">
+      <div class="container hero-grid home-upgrade-grid">
+        <div class="hero-content">
+          <span class="hero-badge">Спортивное питание для силы, массы и восстановления</span>
+<h1 class="home-title">Выбирай <span>спортпит</span> под свою цель</h1>
+<p class="home-subtitle">
+  Протеин, креатин, предтрен и другие популярные добавки в одном каталоге.
+  Быстрый выбор, удобная навигация и топовые позиции для прогресса в зале.
+</p>
+
+          <div class="hero-actions">
+            <a href="shop.html" class="btn btn-primary btn-lg">Перейти в каталог</a>
+            <a href="#best-sellers" class="btn btn-ghost btn-lg">Смотреть хиты</a>
+          </div>
+
+          <div class="hero-mini-row">
+            <div class="hero-mini-card">
+              <span>Каталог</span>
+              <strong>500+</strong>
+              <p>товаров в стиле премиум-витрины</p>
+            </div>
+            <div class="hero-mini-card">
+              <span>Покупатели</span>
+              <strong>4.9</strong>
+              <p>средняя оценка и высокий уровень доверия</p>
+            </div>
+            <div class="hero-mini-card">
+              <span>Поддержка</span>
+              <strong>24/7</strong>
+              <p>чат, помощь по выбору и ответы по заказам</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual hero-dashboard">
+          <div class="hero-panel">
+  <div class="hero-panel-top">
+    <span class="hero-panel-label">🔥 SportShop Select</span>
+    <span class="hero-panel-value">Топ категории</span>
+  </div>
+
+  <h3>Премиальный спортпит для силы, массы и восстановления</h3>
+  <p>
+    В каталоге собраны популярные добавки для тех, кто хочет прогрессировать в зале,
+    закрывать питание удобнее и получать максимум от тренировок без лишнего шума.
+  </p>
+
+  <div class="hero-panel-grid">
+    <div class="hero-feature-box">
+      <strong>Протеин</strong>
+      <span>Для набора массы, восстановления и добора белка</span>
+    </div>
+    <div class="hero-feature-box">
+      <strong>Креатин</strong>
+      <span>Для силы, выносливости и стабильного прогресса</span>
+    </div>
+    <div class="hero-feature-box">
+      <strong>Предтрен</strong>
+      <span>Для энергии, фокуса и мощного старта тренировки</span>
+    </div>
+    <div class="hero-feature-box">
+      <strong>Витамины</strong>
+      <span>Для поддержки организма, восстановления и тонуса</span>
+    </div>
+  </div>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="best-sellers">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-kicker">Популярные позиции</span>
+      <h2>Хиты каталога</h2>
+    </div>
+
+    <div class="mini-products-grid">
+      <article class="mini-product">
+        <div>
+          <div class="mini-product-top">
+            <span class="mini-product-badge">Предтрен</span>
+            <span class="mini-product-rank">01</span>
+          </div>
+          <h3>Insane Labz Psychotic</h3>
+          <p>
+            Мощный предтрен для энергии, концентрации и яркого ощущения тренировки.
+            Подходит тем, кто хочет бодрый старт и сильный заряд перед залом.
+          </p>
+          <ul>
+            <li>Акцент на энергию и фокус</li>
+            <li>Подходит перед тяжелыми тренировками</li>
+            <li>Один из самых заметных предтренов</li>
+          </ul>
+        </div>
+
+        <div class="mini-product-bottom">
+          <strong class="mini-product-price">16 949 ₸</strong>
+          <a href="shop.html" class="btn btn-small">Подробнее</a>
+        </div>
+      </article>
+
+      <article class="mini-product">
+        <div>
+          <div class="mini-product-top">
+            <span class="mini-product-badge">Креатин</span>
+            <span class="mini-product-rank">02</span>
+          </div>
+          <h3>Kevin Levrone Gold Creatine</h3>
+          <p>
+            Базовый вариант для роста силовых показателей, лучшего восстановления
+            и более уверенного прогресса в тренировках.
+          </p>
+          <ul>
+            <li>Подходит для силового прогресса</li>
+            <li>Хороший вариант на каждый день</li>
+            <li>Классическая база для набора формы</li>
+          </ul>
+        </div>
+
+        <div class="mini-product-bottom">
+          <strong class="mini-product-price">8 000 ₸</strong>
+          <a href="shop.html" class="btn btn-small">Подробнее</a>
+        </div>
+      </article>
+
+      <article class="mini-product">
+        <div>
+          <div class="mini-product-top">
+            <span class="mini-product-badge">Протеин</span>
+            <span class="mini-product-rank">03</span>
+          </div>
+          <h3>Rule 1 R1 Whey Blend</h3>
+          <p>
+            Сывороточный протеин для набора массы, восстановления после тренировок
+            и удобного добора белка в рационе.
+          </p>
+          <ul>
+            <li>Подходит после тренировки</li>
+            <li>Удобен для добора белка</li>
+            <li>Хороший вариант для массы и восстановления</li>
+          </ul>
+        </div>
+
+        <div class="mini-product-bottom">
+          <strong class="mini-product-price">120 000 ₸</strong>
+          <a href="shop.html" class="btn btn-small">Подробнее</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-chip">
+        <span class="trust-icon">✅</span>
+        <div>
+          <strong>Оригинальная продукция</strong>
+          <span>Только проверенные товары и аккуратная витрина каталога</span>
+        </div>
+      </div>
+
+      <div class="trust-chip">
+        <span class="trust-icon">🚚</span>
+        <div>
+          <strong>Быстрый заказ</strong>
+          <span>Удобный выбор, корзина и понятная структура магазина</span>
+        </div>
+      </div>
+
+      <div class="trust-chip">
+        <span class="trust-icon">💬</span>
+        <div>
+          <strong>Помощь по выбору</strong>
+          <span>AI-чат и удобная навигация по категориям и товарам</span>
+        </div>
+      </div>
+
+      <div class="trust-chip">
+        <span class="trust-icon">🔥</span>
+        <div>
+          <strong>Популярные категории</strong>
+          <span>Протеин, креатин, предтрен и другие ключевые позиции</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="section section-compact">
+  <div class="container">
+    <div class="home-banner">
+      <div>
+        <span class="section-kicker">Популярные категории</span>
+        <h2>Всё нужное для тренировок в одном месте</h2>
+        <p>
+          В каталоге собраны популярные категории спортивного питания:
+          протеин для набора массы, креатин для силы, предтрен для энергии
+          и витамины для поддержки организма и восстановления.
+        </p>
+
+        <div class="home-banner-actions">
+          <a href="shop.html" class="btn btn-primary btn-lg">Открыть каталог</a>
+          <a href="community.html" class="btn btn-ghost btn-lg">Перейти в сообщество</a>
+        </div>
+      </div>
+
+      <div class="compare-card">
+        <h3>Что есть в магазине</h3>
+        <div class="compare-list">
+          <div class="compare-item">
+            <strong>Протеин</strong>
+            <span>Для набора массы, восстановления и добора белка в рационе.</span>
+          </div>
+          <div class="compare-item">
+            <strong>Креатин</strong>
+            <span>Для силы, выносливости и стабильного прогресса в тренировках.</span>
+          </div>
+          <div class="compare-item">
+            <strong>Предтрен</strong>
+            <span>Для энергии, концентрации и мощного старта перед тренировкой.</span>
+          </div>
+          <div class="compare-item">
+            <strong>Витамины</strong>
+            <span>Для общего тонуса, восстановления и поддержки организма.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="section cta-section">
+      <div class="container compare-grid">
+        <div class="cta-box">
+          <div>
+            <span class="section-kicker">Готов выбрать?</span>
+            <h2>Собери свою форму вместе со SportShop</h2>
+            <p>Открывай каталог, смотри популярные категории и находи добавки под свою цель.</p>
+          </div>
+          <a href="shop.html" class="btn btn-primary btn-lg">Начать покупки</a>
+        </div>
+
+       <div class="home-news-card">
+  <h3>Популярные категории</h3>
+  <div class="news-list">
+    <div class="news-row">
+      <small>01</small>
+      <strong>Протеин</strong>
+      <p>Для набора массы, восстановления и стабильного добора белка в рационе.</p>
+    </div>
+    <div class="news-row">
+      <small>02</small>
+      <strong>Креатин</strong>
+      <p>Для роста силовых показателей, выносливости и лучшего ощущения прогресса.</p>
+    </div>
+    <div class="news-row">
+      <small>03</small>
+      <strong>Предтрен</strong>
+      <p>Для энергии, концентрации и мощного входа в тренировочный процесс.</p>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo footer-logo">Sport<span>Shop</span></a>
+        <p class="footer-text">
+          Современный магазин спортивного питания с мощным визуалом,
+          удобной навигацией и атмосферой премиального бренда.
+        </p>
+      </div>
+
+      <div>
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="shop.html">Каталог</a></li>
+          <li><a href="community.html">Сообщество</a></li>
+          <li><a href="profile.html">Профиль</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+77000000000">+7 700 000 00 00</a></li>
+          <li><a href="mailto:support@sportshop.kz">support@sportshop.kz</a></li>
+          <li>Казахстан</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="ai-chat-fab" id="ai-chat-fab" title="Открыть AI чат">💬</div>
+
+  <div class="ai-chat hidden" id="ai-chat">
+    <div class="ai-chat-header">
+      <div class="ai-chat-header-left">
+        <div class="ai-chat-avatar">🤖</div>
+        <div class="ai-chat-title">
+          <strong>SportShop AI</strong>
+          <span>Консультант магазина</span>
+        </div>
+      </div>
+
+      <button class="ai-chat-close" id="ai-chat-close" type="button">✕</button>
+    </div>
+
+    <div class="ai-chat-body">
+      <div class="ai-chat-messages" id="ai-chat-messages">
+        <div class="ai-msg ai-msg-bot">
+          Привет. Я помогу подобрать спортпит, объяснить разницу между товарами и ответить по заказу.
+        </div>
+      </div>
+
+      <div class="ai-chat-suggestions" id="ai-chat-suggestions">
+        <button class="ai-suggestion" type="button" data-text="Подбери мне креатин для новичка">Креатин для новичка</button>
+        <button class="ai-suggestion" type="button" data-text="Какой протеин лучше для набора массы?">Протеин для массы</button>
+        <button class="ai-suggestion" type="button" data-text="Чем отличается изолят от концентрата?">Изолят или концентрат</button>
+        <button class="ai-suggestion" type="button" data-text="Как принимать предтрен правильно?">Как пить предтрен</button>
+      </div>
+
+      <form class="ai-chat-form" id="ai-chat-form">
+        <input id="ai-chat-input" type="text" placeholder="Например: какой товар лучше для силы?" autocomplete="off" />
+        <button type="submit">↑</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/ai-chat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/pages/home.js"></script>
+  <div id="toast-container"></div>
+  <script src="js/toast.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админка — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/admin.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html">Каталог</a>
+        <a href="community.html">Сообщество</a>
+        <a href="admin.html" class="active">Админка</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn">🛒</a>
+
+        <div id="guest-actions">
+          <a href="login.html" class="btn btn-ghost">Войти</a>
+          <a href="register.html" class="btn btn-primary">Регистрация</a>
+        </div>
+
+        <div id="user-actions" class="hidden">
+          <div class="header-user-menu" id="header-user-menu">
+            <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+              <img id="header-avatar-image" class="header-avatar-image hidden" alt="avatar">
+              <span class="header-avatar" id="header-avatar">U</span>
+            </button>
+
+            <div class="header-dropdown" id="header-dropdown">
+              <a href="profile.html" class="header-dropdown-item">Профиль</a>
+              <a href="favorites.html" class="header-dropdown-item">Закладки</a>
+              <a href="admin.html" class="header-dropdown-item hidden" id="admin-dropdown-link">Админка</a>
+              <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="burger" id="burger" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-page">
+    <div class="container">
+      <section class="admin-hero">
+        <div class="admin-hero-box">
+          <span class="section-kicker">Панель управления</span>
+          <h1>Товары и варианты</h1>
+          <p>Создавай товар как в Kaspi: один товар — несколько вкусов и весов.</p>
+        </div>
+      </section>
+
+      <section class="admin-layout">
+        <div class="admin-column">
+          <div class="admin-card">
+            <div class="admin-card-head">
+              <h2 id="product-form-title">Основной товар</h2>
+              <p>Общие данные карточки товара</p>
+            </div>
+
+            <form id="product-form" class="admin-form">
+              <input type="hidden" id="product-id">
+
+              <div class="admin-field">
+                <label for="product-name">Название товара</label>
+                <input type="text" id="product-name" required>
+              </div>
+
+              <div class="admin-field">
+                <label for="product-category">Категория</label>
+                <select id="product-category" required>
+                  <option value="">Выбери категорию</option>
+                  <option value="whey">Протеин</option>
+                  <option value="creatine">Креатин</option>
+                  <option value="preworkout">Предтрен</option>
+                  <option value="vitamins">Витамины</option>
+                  <option value="gainer">Гейнер</option>
+                  <option value="fatburner">Жиросжигатель</option>
+                </select>
+              </div>
+
+              <div class="admin-field">
+                <label for="product-description">Описание</label>
+                <textarea id="product-description" rows="4"></textarea>
+              </div>
+
+              <div class="admin-field">
+                <label for="product-composition">Состав</label>
+                <textarea id="product-composition" rows="4"></textarea>
+              </div>
+
+              <div class="admin-field">
+                <label for="product-usage">Способ применения</label>
+                <textarea id="product-usage" rows="4"></textarea>
+              </div>
+
+              <div class="admin-field">
+                <label for="product-safety">Безопасность</label>
+                <textarea id="product-safety" rows="4"></textarea>
+              </div>
+
+              <div class="admin-actions">
+                <button type="submit" class="btn btn-primary">Сохранить товар</button>
+                <button type="button" class="btn btn-ghost hidden" id="product-cancel-btn">Отмена</button>
+              </div>
+
+              <div class="admin-message" id="product-message"></div>
+            </form>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-head">
+              <h2 id="variant-form-title">Вариант товара</h2>
+              <p>Вкус, вес, цена, фото и остаток</p>
+            </div>
+
+            <form id="variant-form" class="admin-form">
+              <input type="hidden" id="variant-id">
+
+              <div class="admin-field">
+                <label for="variant-product">Для какого товара</label>
+                <select id="variant-product" required>
+                  <option value="">Сначала выбери товар</option>
+                </select>
+              </div>
+
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="variant-flavor">Вкус</label>
+                  <input type="text" id="variant-flavor" placeholder="Ваниль">
+                </div>
+
+                <div class="admin-field">
+                  <label for="variant-weight">Вес</label>
+                  <input type="text" id="variant-weight" placeholder="2310 г">
+                </div>
+              </div>
+
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="variant-price">Цена</label>
+                  <input type="number" id="variant-price" min="0" required>
+                </div>
+
+                <div class="admin-field">
+                  <label for="variant-old-price">Старая цена</label>
+                  <input type="number" id="variant-old-price" min="0">
+                </div>
+              </div>
+
+              <div class="admin-row">
+                <div class="admin-field">
+                  <label for="variant-stock">Остаток</label>
+                  <input type="number" id="variant-stock" min="0" value="0">
+                </div>
+
+                <div class="admin-field">
+                  <label for="variant-sku">Артикул / SKU</label>
+                  <input type="text" id="variant-sku" placeholder="R1-VAN-2310">
+                </div>
+              </div>
+
+              <div class="admin-field">
+                <label for="variant-image">Фото варианта</label>
+                <input type="text" id="variant-image" placeholder="URL картинки или путь">
+              </div>
+
+              <div class="admin-actions">
+                <button type="submit" class="btn btn-primary">Сохранить вариант</button>
+                <button type="button" class="btn btn-ghost hidden" id="variant-cancel-btn">Отмена</button>
+              </div>
+
+              <div class="admin-message" id="variant-message"></div>
+            </form>
+          </div>
+        </div>
+
+        <div class="admin-column admin-column-wide">
+          <div class="admin-card">
+            <div class="admin-card-head">
+              <h2>Текущие товары</h2>
+              <p>У каждого товара могут быть разные вкусы и веса</p>
+            </div>
+
+            <div id="products-list" class="admin-products-list"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/pages/admin.js"></script>
+  <div id="toast-container"></div>
+<script src="js/toast.js"></script>
+</body>
+</html>

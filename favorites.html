@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Закладки — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/favorites.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html">Каталог</a>
+        <a href="community.html">Сообщество</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn cart-link">
+          🛒 <span id="cart-count">0</span>
+        </a>
+
+        <div id="guest-actions">
+          <a href="login.html" class="btn btn-ghost">Войти</a>
+          <a href="register.html" class="btn btn-primary">Регистрация</a>
+        </div>
+
+        <div id="user-actions" class="hidden">
+          <div class="header-user-menu" id="header-user-menu">
+            <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+              <img id="header-avatar-image" class="header-avatar-image hidden" alt="avatar">
+              <span class="header-avatar" id="header-avatar">U</span>
+            </button>
+
+            <div class="header-dropdown" id="header-dropdown">
+              <a href="profile.html" class="header-dropdown-item">Профиль</a>
+              <a href="favorites.html" class="header-dropdown-item">Закладки</a>
+              <a href="admin.html" class="header-dropdown-item hidden" id="admin-dropdown-link">Админка</a>
+              <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="burger" id="burger" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="favorites-page">
+    <div class="container">
+      <section class="favorites-hero">
+        <div class="favorites-hero-box">
+          <span class="section-kicker">Твои закладки</span>
+          <h1>Избранные товары</h1>
+          <p>
+            Здесь собраны товары, которые ты сохранил. Быстро находи нужное,
+            фильтруй по категории и открывай карточку товара.
+          </p>
+        </div>
+      </section>
+
+      <section class="favorites-section">
+      
+    <div class="favorites-toolbar">
+  <input
+    type="text"
+    id="favorites-search"
+    placeholder="Поиск по названию..."
+  >
+
+  <div class="custom-select" data-target="favorites-category">
+    <button class="custom-select-trigger" type="button">
+      <span class="custom-select-label">Все категории</span>
+      <span class="custom-select-arrow">⌄</span>
+    </button>
+
+    <div class="custom-select-menu">
+      <button class="custom-select-option active" type="button" data-value="all">Все категории</button>
+      <button class="custom-select-option" type="button" data-value="whey">Протеин</button>
+      <button class="custom-select-option" type="button" data-value="creatine">Креатин</button>
+      <button class="custom-select-option" type="button" data-value="preworkout">Предтрен</button>
+      <button class="custom-select-option" type="button" data-value="vitamins">Витамины</button>
+      <button class="custom-select-option" type="button" data-value="gainer">Гейнер</button>
+      <button class="custom-select-option" type="button" data-value="fatburner">Жиросжигатель</button>
+    </div>
+
+    <input type="hidden" id="favorites-category" value="all">
+  </div>
+
+  <div class="custom-select" data-target="favorites-sort">
+    <button class="custom-select-trigger" type="button">
+      <span class="custom-select-label">По умолчанию</span>
+      <span class="custom-select-arrow">⌄</span>
+    </button>
+
+    <div class="custom-select-menu">
+      <button class="custom-select-option active" type="button" data-value="default">По умолчанию</button>
+      <button class="custom-select-option" type="button" data-value="price-asc">Сначала дешевле</button>
+      <button class="custom-select-option" type="button" data-value="price-desc">Сначала дороже</button>
+      <button class="custom-select-option" type="button" data-value="name-asc">По названию А-Я</button>
+    </div>
+
+    <input type="hidden" id="favorites-sort" value="default">
+  </div>
+</div>
+
+        <div id="favorites-list" class="favorites-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/pages/favorites.js"></script>
+  <script src="js/toast.js"></script>
+</body>
+</html>

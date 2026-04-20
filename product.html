@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Товар — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/product.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html" class="active">Каталог</a>
+        <a href="community.html">Сообщество</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cart.html" class="icon-btn">🛒 <span id="cart-count">0</span></a>
+
+        <div id="guest-actions">
+          <a href="login.html" class="btn btn-ghost">Войти</a>
+          <a href="register.html" class="btn btn-primary">Регистрация</a>
+        </div>
+
+        <div id="user-actions" class="hidden">
+          <div class="header-user-menu" id="header-user-menu">
+            <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+              <img id="header-avatar-image" class="header-avatar-image hidden" alt="avatar">
+              <span class="header-avatar" id="header-avatar">U</span>
+            </button>
+
+            <div class="header-dropdown" id="header-dropdown">
+              <a href="profile.html" class="header-dropdown-item">Профиль</a>
+              <a href="favorites.html" class="header-dropdown-item">Закладки</a>
+              <a href="admin.html" class="header-dropdown-item hidden" id="admin-dropdown-link">Админка</a>
+              <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="burger" id="burger" type="button">☰</button>
+      </div>
+    </div>
+  </header>
+
+<div class="ai-chat-fab" id="ai-chat-fab" title="Открыть AI чат">💬</div>
+
+<div class="ai-chat hidden" id="ai-chat">
+  <div class="ai-chat-header">
+    <div class="ai-chat-header-left">
+      <div class="ai-chat-avatar">🤖</div>
+      <div class="ai-chat-title">
+        <strong>SportShop AI</strong>
+        <span>Консультант магазина</span>
+      </div>
+    </div>
+
+    <button class="ai-chat-close" id="ai-chat-close" type="button">✕</button>
+  </div>
+
+  <div class="ai-chat-body">
+    <div class="ai-chat-messages" id="ai-chat-messages">
+      <div class="ai-msg ai-msg-bot">
+        Привет. Я помогу подобрать спортпит, объяснить разницу между товарами и ответить по заказу.
+      </div>
+    </div>
+
+    <div class="ai-chat-suggestions" id="ai-chat-suggestions">
+      <button class="ai-suggestion" type="button" data-text="Подбери мне креатин для новичка">Креатин для новичка</button>
+      <button class="ai-suggestion" type="button" data-text="Какой протеин лучше для набора массы?">Протеин для массы</button>
+      <button class="ai-suggestion" type="button" data-text="Чем отличается изолят от концентрата?">Изолят или концентрат</button>
+      <button class="ai-suggestion" type="button" data-text="Как принимать предтрен правильно?">Как пить предтрен</button>
+    </div>
+
+    <form class="ai-chat-form" id="ai-chat-form">
+      <input
+        id="ai-chat-input"
+        type="text"
+        placeholder="Например: какой товар лучше для силы?"
+        autocomplete="off"
+      />
+      <button type="submit">↑</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/ai-chat.js"></script>
+
+
+  <main class="product-page">
+    <div class="container">
+      <div class="product-page-grid">
+        <section class="product-gallery-card">
+          <div class="product-main-image-wrap">
+            <img id="product-image" src="" alt="Товар">
+          </div>
+        </section>
+
+        <section class="product-info-card">
+          <span class="product-page-badge" id="product-category">Товар</span>
+          <h1 id="product-title">Загрузка...</h1>
+
+          <div class="product-price-block">
+            <span class="product-page-price" id="product-price">0 ₸</span>
+            <span class="product-page-old-price" id="product-old-price"></span>
+          </div>
+
+          <div class="product-select-block">
+            <label>Вкус</label>
+            <div class="product-options" id="flavor-options"></div>
+          </div>
+
+          <div class="product-select-block">
+            <label>Вес</label>
+            <div class="product-options" id="weight-options"></div>
+          </div>
+
+          <div class="product-stock" id="product-stock">В наличии: 0</div>
+<div class="product-actions-row">
+  <button class="btn btn-primary btn-lg" id="add-to-cart-btn" type="button">Добавить в корзину</button>
+
+  <button class="btn btn-ghost btn-lg" id="favorite-btn" type="button">
+    ♡ В закладки
+  </button>
+
+  <a href="shop.html" class="btn btn-ghost btn-lg">Назад в каталог</a>
+</div>
+        </section>
+      </div>
+
+      <section class="product-details-card">
+  <div class="product-tabs">
+    <button class="product-tab active" data-tab="description" type="button">Описание</button>
+    <button class="product-tab" data-tab="composition" type="button">Состав</button>
+    <button class="product-tab" data-tab="usage" type="button">Применение</button>
+    <button class="product-tab" data-tab="safety" type="button">Безопасность</button>
+    <button class="product-tab" data-tab="reviews" type="button">Отзывы</button>
+  </div>
+
+  <div class="product-tab-content" id="product-tab-content"></div>
+
+  <div id="reviews-tab" style="display:none;">
+    <section class="product-reviews-card">
+      <div class="reviews-head">
+        <h2>Отзывы</h2>
+        <div class="reviews-summary">
+          <span id="reviews-rating">0.0</span>
+          <span id="reviews-count">(0)</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" id="open-review-form-btn">Написать отзыв</button>
+
+      <div id="reviews-list" class="reviews-list"></div>
+
+      <div id="review-form-wrap" style="display:none;">
+        <form id="review-form" class="review-form">
+          <h3 id="review-form-title">Изменить отзыв</h3>
+
+          <div class="review-stars" id="review-stars">
+            <span data-value="1">⭐</span>
+            <span data-value="2">⭐</span>
+            <span data-value="3">⭐</span>
+            <span data-value="4">⭐</span>
+            <span data-value="5">⭐</span>
+          </div>
+
+          <textarea id="review-text" placeholder="Напиши отзыв..."></textarea>
+
+          <button type="submit" class="btn btn-primary" id="review-submit-btn">Сохранить</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/pages/product.js"></script>
+<div id="toast-container"></div>
+<script src="js/toast.js"></script>
+</body>
+</html>

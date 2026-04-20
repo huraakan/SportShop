@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Профиль — SportShop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/profile.css">
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Sport<span>Shop</span></a>
+
+      <nav class="nav" id="nav">
+        <a href="index.html">Главная</a>
+        <a href="shop.html">Каталог</a>
+        <a href="community.html">Сообщество</a>
+      </nav>
+
+    <div class="header-actions">
+  <a href="cart.html" class="icon-btn">🛒</a>
+
+  <div id="guest-actions">
+    <a href="login.html" class="btn btn-ghost">Войти</a>
+    <a href="register.html" class="btn btn-primary">Регистрация</a>
+  </div>
+
+  <div id="user-actions" class="hidden">
+  <div class="header-user-menu" id="header-user-menu">
+    <button class="header-avatar-btn" id="header-avatar-btn" type="button">
+      <span class="header-avatar" id="header-avatar">U</span>
+    </button>
+
+    <div class="header-dropdown" id="header-dropdown">
+      <a href="profile.html" class="header-dropdown-item">Профиль</a>
+      <button class="header-dropdown-item danger" id="header-logout-btn" type="button">Выйти</button>
+    </div>
+  </div>
+</div>
+
+  <button class="burger" id="burger" type="button">☰</button>
+</div>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <div class="container">
+      <section class="profile-hero">
+        <div class="profile-card">
+          <div class="profile-avatar">
+  <div class="avatar-circle avatar-image-wrap" id="avatar-wrap">
+    <img id="avatar-image" class="avatar-image hidden" alt="Аватар">
+    <span id="avatar-circle">U</span>
+  </div>
+
+  <label for="avatar-input" class="avatar-upload-btn">Изменить фото</label>
+  <input type="file" id="avatar-input" accept="image/*" hidden>
+</div>
+
+          <div class="profile-main-info">
+            <span class="section-kicker">Личный кабинет</span>
+            <h1 id="profile-name">Загрузка...</h1>
+            <p id="profile-email">user@email.com</p>
+          </div>
+
+          <div class="profile-actions-top">
+            <button class="btn btn-primary" id="edit-btn" type="button">Редактировать</button>
+            <button class="btn btn-ghost" id="logout-btn" type="button">Выйти</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile-content">
+        <div class="profile-grid">
+          <div class="profile-box">
+            <div class="box-head">
+              <h2>Информация</h2>
+              <p>Основные данные твоего аккаунта</p>
+            </div>
+
+            <div class="info-grid" id="view-mode">
+              <div class="info-item">
+                <span class="info-label">Имя</span>
+                <strong id="view-name">—</strong>
+              </div>
+
+              <div class="info-item">
+                <span class="info-label">Email</span>
+                <strong id="view-email">—</strong>
+              </div>
+
+              <div class="info-item">
+                <span class="info-label">Телефон</span>
+                <strong id="view-phone">—</strong>
+              </div>
+
+              <div class="info-item">
+                <span class="info-label">Возраст</span>
+                <strong id="view-age">—</strong>
+              </div>
+
+              <div class="info-item">
+                <span class="info-label">Страна</span>
+                <strong id="view-country">—</strong>
+              </div>
+
+              <div class="info-item">
+                <span class="info-label">Город</span>
+                <strong id="view-city">—</strong>
+              </div>
+            </div>
+
+            <div class="profile-box">
+  <div class="box-head">
+    <h2>Статистика</h2>
+    <p>Твоя активность</p>
+  </div>
+
+  <div class="status-list">
+    <div class="status-item">
+      <span>Постов</span>
+      <strong id="stat-posts">0</strong>
+    </div>
+
+    <div class="status-item">
+      <span>Лайков</span>
+      <strong id="stat-likes">0</strong>
+    </div>
+  </div>
+</div>
+<div class="profile-box">
+  <div class="box-head">
+    <h2>Мои посты</h2>
+    <p>Твои публикации</p>
+  </div>
+
+  <div id="my-posts" class="community-posts"></div>
+</div>
+
+<div class="info-item">
+  <span class="info-label">О себе</span>
+  <strong id="view-bio">—</strong>
+</div>
+
+            <form class="profile-form hidden" id="edit-form">
+              <div class="form-grid">
+                <div class="profile-field">
+                  <label for="name">Имя</label>
+                  <input type="text" id="name" placeholder="Твоё имя">
+                </div>
+
+                <div class="profile-field">
+                  <label for="phone">Телефон</label>
+                  <input type="text" id="phone" placeholder="+7 777 777 77 77">
+                </div>
+
+                <div class="profile-field">
+                  <label for="age">Возраст</label>
+                  <input type="number" id="age" placeholder="18">
+                </div>
+
+                <div class="profile-field">
+                  <label for="country">Страна</label>
+                  <input type="text" id="country" placeholder="Казахстан">
+                </div>
+
+                <div class="profile-field profile-field-full">
+                  <label for="city">Город</label>
+                  <input type="text" id="city" placeholder="Астана">
+                </div>
+              </div>
+
+<div class="profile-field profile-field-full">
+  <label for="bio">О себе</label>
+  <input type="text" id="bio" placeholder="Расскажи о себе...">
+</div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="save-btn">Сохранить</button>
+                <button type="button" class="btn btn-ghost" id="cancel-btn">Отмена</button>
+              </div>
+
+              <div class="profile-message" id="profile-message"></div>
+            </form>
+          </div>
+
+          
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth-ui.js"></script>
+  <script src="js/pages/profile.js"></script>
+  <div id="toast-container"></div>
+<script src="js/toast.js"></script>
+</body>
+</html>
